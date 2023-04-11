@@ -1,0 +1,74 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "networkFabricName": {
+      "value": "fabricName"
+    },
+    "networkFabricControllerId": {
+      "value": "<controllerId>"
+    },
+    "rackCount": {
+      "value": 3
+    },
+    "serverCountPerRack": {
+      "value": 4
+    },
+    "ipv4Prefix": {
+      "value": "10.0.0.1/19"
+    },
+    "ipv6Prefix": {
+      "value": ""
+    },
+    "fabricASN": {
+      "value": 65234
+    },
+    "nfTSconfUsername": {
+      "value": "username"
+    },
+    "nfTSconfPassword": {
+      "value": "password"
+    },
+    "nfTSconfSerialNumber": {
+      "value": "1234"
+    },
+    "nfTSconfPrimaryIpv4Prefix": {
+      "value": "10.13.0.0/21"
+    },
+    "nfTSconfPrimaryIpv6Prefix": {
+      "value": "3FE:FFF:C30::a0/12"
+    },
+    "nfTSconfSecondaryIpv4Prefix": {
+      "value": "10.13.0.0/21"
+    },
+    "nfTSconfSecondaryIpv6Prefix": {
+      "value": ""
+    },
+    "nfMNconfInfraVpn": {
+      "value": {
+        "peeringOption": "OptionB",
+        "optionBProperties": {
+          "importRouteTargets": [
+            "12345:12345"
+          ],
+          "exportRouteTargets": [
+            "12345:12345"
+          ]
+        }
+      }
+    },
+    "nfMNconfWorkloadVpn": {
+      "value": {
+        "peeringOption": "OptionB",
+        "optionBProperties": {
+          "importRouteTargets": [
+            "12345:12345"
+          ],
+          "exportRouteTargets": [
+            "12345:12345"
+          ]
+        }
+      }
+    }
+  }
+}

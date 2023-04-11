@@ -1,0 +1,20 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "ipPrefixName": {
+      "value": "ipPrefixName"
+    },
+    "ipPrefixRules": {
+      "value": [
+        {
+          "action": "Deny",
+          "sequenceNumber": 1234,
+          "networkPrefix": "1.1.1.0/24",
+          "condition": "EqualTo",
+          "subnetMaskLength": 10
+        }
+      ]
+    }
+  }
+}

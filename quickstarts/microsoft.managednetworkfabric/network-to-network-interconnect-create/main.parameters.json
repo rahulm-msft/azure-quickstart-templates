@@ -1,0 +1,31 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "networkToNetworkInterconnectName": {
+      "value": "networkToNetworkInterconnectName"
+    },
+    "isManagementType": {
+      "value": "True"
+    },
+    "useOptionB": {
+      "value": "True"
+    },
+    "layer2Configuration": {
+      "value": {
+        "portCount": 3,
+        "mtu": 1500
+      }
+    },
+    "layer3Configuration": {
+      "value": {
+        "importRoutePolicyId": "exampleId",
+        "exportRoutePolicyId": "exampleId",
+        "peerASN": 65123,
+        "vlanId": 501,
+        "primaryIpv4Prefix": "20.10.20.1/29",
+        "secondaryIpv4Prefix": "20.20.10.1/29"
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "externalNetworkName": {
+      "value": "externalNetworkName"
+    },
+    "l3IsolationDomainName": {
+      "value": "l3IsolationDomainName"
+    },
+    "peeringOption": {
+      "value": "OptionB"
+    },
+    "optionAProperties": {
+      "value": {
+        "mtu": 1678,
+        "vlanId": 701,
+        "peerASN": 65234,
+        "primaryIpv4Prefix": "",
+        "primaryIpv6Prefix": "",
+        "secondaryIpv4Prefix": "",
+        "secondaryIpv6Prefix": ""
+      }
+    },
+    "optionBProperties": {
+      "value": {
+        "importRouteTargets": [
+          "100:200"
+        ],
+        "exportRouteTargets": [
+          "101:201"
+        ]
+      }
+    },
+    "importRoutePolicyId": {
+      "value": "<importRoutePolicyId>"
+    },
+    "exportRoutePolicyId": {
+      "value": "<exportRoutePolicyId>"
+    }
+  }
+}

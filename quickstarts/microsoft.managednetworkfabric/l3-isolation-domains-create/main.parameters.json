@@ -1,0 +1,37 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "l3DomainName": {
+      "value": "l3IsolationDomainName"
+    },
+    "networkFabricId": {
+      "value": "<fabricId>"
+    },
+    "redistributeConnectedSubnets": {
+      "value": "True"
+    },
+    "redistributeStaticRoutes": {
+      "value": "True"
+    },
+    "aggregateRouteConfiguration": {
+      "value": {
+        "ipv4Routes": [
+          {
+            "prefix": "10.1.1.1"
+          }
+        ],
+        "ipv6Routes": [
+          {
+            "prefix": "5fff::/53"
+          }
+        ]
+      }
+    },
+    "connectedSubnetRoutePolicy": {
+      "value": {
+        "exportRoutePolicyId": "<exampleExportRoutePolicyId>"
+      }
+    }
+  }
+}

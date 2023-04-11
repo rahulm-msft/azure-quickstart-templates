@@ -1,0 +1,63 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "routePolicyName": {
+      "value": "routePolicyName"
+    },
+    "statements": {
+      "value": [
+        {
+          "sequenceNumber": 1234,
+          "condition": {
+            "ipCommunityIds": [
+              "id"
+            ],
+            "ipExtendedCommunityIds": [
+              "id"
+            ],
+            "ipPrefixId": "id"
+          },
+          "action": {
+            "localPreference": 2,
+            "actionType": "Deny",
+            "ipCommunityProperties": {
+              "add": {
+                "ipCommunityIds": [
+                  "id"
+                ]
+              },
+              "delete": {
+                "ipCommunityIds": [
+                  "id"
+                ]
+              },
+              "set": {
+                "ipCommunityIds": [
+                  "id"
+                ]
+              }
+            },
+            "ipExtendedCommunityProperties": {
+              "add": {
+                "ipExtendedCommunityIds": [
+                  "id"
+                ]
+              },
+              "delete": {
+                "ipExtendedCommunityIds": [
+                  "id"
+                ]
+              },
+              "set": {
+                "ipExtendedCommunityIds": [
+                  "id"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

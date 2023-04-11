@@ -1,0 +1,82 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "internalNetworkName": {
+      "value": "internalNetworkName"
+    },
+    "l3IsolationDomainName": {
+      "value": "l3IsolationDomainName"
+    },
+    "vlanId": {
+      "value": 3990
+    },
+    "mtu": {
+      "value": 1678
+    },
+    "connectedIPv4Subnets": {
+      "value": [
+        {
+          "prefix": "10.10.10.10/16"
+        }
+      ]
+    },
+    "connectedIPv6Subnets": {
+      "value": [
+        {
+          "prefix": "5fff::/111"
+        }
+      ]
+    },
+    "staticRouteConfiguration": {
+      "value": {
+        "ipv4Routes": [
+          {
+            "prefix": "20.20.2.0/24",
+            "nextHop": [
+              "20.20.2.0"
+            ]
+          }
+        ],
+        "ipv6Routes": [
+          {
+            "prefix": "5fff::/111",
+            "nextHop": [
+              "5fff::"
+            ]
+          }
+        ]
+      }
+    },
+    "bgpConfiguration": {
+      "value": {
+        "defaultRouteOriginate": "True",
+        "allowAS": 2,
+        "allowASOverride": "Enable",
+        "peerASN": 65123,
+        "ipv4ListenRangePrefixes": [
+          "10.10.10.10/16"
+        ],
+        "ipv6ListenRangePrefixes": [
+          "5fff::/111"
+        ],
+        "ipv4NeighborAddress": [
+          {
+            "address": "10.10.10.10"
+          }
+        ],
+        "ipv6NeighborAddress": [
+          {
+            "address": "5fff::"
+          }
+        ]
+      }
+    },
+    "importRoutePolicyId": {
+      "value": "<importRoutePolicyId>"
+    },
+    "exportRoutePolicyId": {
+      "value": "<exportRoutePolicyId>"
+    }
+  }
+}
