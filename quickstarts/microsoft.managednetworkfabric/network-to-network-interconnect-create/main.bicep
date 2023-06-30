@@ -4,6 +4,13 @@ param networkFabricName string
 @description('Name of the Network To Network Interconnect')
 param networkToNetworkInterconnectName string
 
+@description('Type of NNI used')
+@allowed([
+  'CE'
+  'NPB'
+])
+param nniType string
+
 @description('Configuration to use NNI for Infrastructure Management')
 @allowed([
   'True'
@@ -32,6 +39,7 @@ resource networkToNetworkInterconnect 'Microsoft.ManagedNetworkFabric/networkFab
   name: networkToNetworkInterconnectName
   parent: networkFabrics
   properties: {
+    nniType: nniType
     isManagementType: isManagementType
     useOptionB: useOptionB
     layer2Configuration: layer2Configuration
