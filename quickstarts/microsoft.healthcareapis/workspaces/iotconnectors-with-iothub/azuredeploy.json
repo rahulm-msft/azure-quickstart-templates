@@ -4,8 +4,8 @@
   "metadata": {
     "_generator": {
       "name": "bicep",
-      "version": "0.12.40.16777",
-      "templateHash": "7149118002675192357"
+      "version": "0.17.1.54307",
+      "templateHash": "14780502484901537078"
     }
   },
   "parameters": {
@@ -25,12 +25,17 @@
         "centralindia",
         "eastus",
         "eastus2",
+        "francecentral",
+        "japaneast",
         "koreacentral",
+        "northcentralus",
         "northeurope",
+        "qatarcentral",
         "southcentralus",
         "southeastasia",
         "swedencentral",
         "switzerlandnorth",
+        "westcentralus",
         "westeurope",
         "westus2",
         "westus3",
@@ -53,7 +58,7 @@
         "templateType": "CollectionContent",
         "template": [
           {
-            "templateType": "IotJsonPathContentTemplate",
+            "templateType": "IotJsonPathContent",
             "template": {
               "typeName": "HeartRate",
               "typeMatchExpression": "$..[?(@Body.HeartRate)]",
@@ -68,7 +73,7 @@
             }
           },
           {
-            "templateType": "IotJsonPathContentTemplate",
+            "templateType": "IotJsonPathContent",
             "template": {
               "typeName": "HeartRateVariability",
               "typeMatchExpression": "$..[?(@Body.HeartRateVariability)]",
@@ -83,7 +88,7 @@
             }
           },
           {
-            "templateType": "IotJsonPathContentTemplate",
+            "templateType": "IotJsonPathContent",
             "template": {
               "typeName": "RespiratoryRate",
               "typeMatchExpression": "$..[?(@Body.RespiratoryRate)]",
@@ -98,7 +103,7 @@
             }
           },
           {
-            "templateType": "IotJsonPathContentTemplate",
+            "templateType": "IotJsonPathContent",
             "template": {
               "typeName": "BodyTemperature",
               "typeMatchExpression": "$..[?(@Body.BodyTemperature)]",
@@ -113,7 +118,7 @@
             }
           },
           {
-            "templateType": "IotJsonPathContentTemplate",
+            "templateType": "IotJsonPathContent",
             "template": {
               "typeName": "BloodPressure",
               "typeMatchExpression": "$..[?(@Body.BloodPressure.Systolic && @Body.BloodPressure.Diastolic)]",
@@ -273,7 +278,7 @@
         ]
       },
       "metadata": {
-        "description": "The mapping JSON that determines how normalized data is converted to FHIR Observations."
+        "description": "The mapping JSON that determines how normalized data is converted into FHIR Observations."
       }
     }
   },

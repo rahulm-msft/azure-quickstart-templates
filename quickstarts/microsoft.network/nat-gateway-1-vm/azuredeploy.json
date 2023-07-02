@@ -4,8 +4,8 @@
   "metadata": {
     "_generator": {
       "name": "bicep",
-      "version": "0.5.6.12127",
-      "templateHash": "1908625783801438696"
+      "version": "0.18.4.5664",
+      "templateHash": "18281262414980837218"
     }
   },
   "parameters": {
@@ -100,7 +100,7 @@
       }
     },
     "adminpassword": {
-      "type": "secureString",
+      "type": "securestring",
       "metadata": {
         "description": "Administrator password for virtual machine"
       }
