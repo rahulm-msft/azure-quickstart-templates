@@ -25,8 +25,8 @@
     },
     "layer3Configuration": {
       "value": {
-        "importRoutePolicyId": "exampleId",
-        "exportRoutePolicyId": "exampleId",
+        "importRoutePolicyId": "/subscriptions/xxxxx-xxxx-xxxx-xxxx-xxxxx/resourceGroups/example-rg/providers/microsoft.managednetworkfabric/routePolicies/example-routepolicy",
+        "exportRoutePolicyId": "/subscriptions/xxxxx-xxxx-xxxx-xxxx-xxxxx/resourceGroups/example-rg/providers/microsoft.managednetworkfabric/routePolicies/example-routepolicy",
         "peerASN": 65123,
         "vlanId": 501,
         "primaryIpv4Prefix": "20.10.20.1/29",

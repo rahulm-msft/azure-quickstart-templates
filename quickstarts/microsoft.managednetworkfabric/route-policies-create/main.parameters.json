@@ -11,12 +11,12 @@
           "sequenceNumber": 1234,
           "condition": {
             "ipCommunityIds": [
-              "id"
+              "/subscriptions/xxxxx-xxxx-xxxx-xxxx-xxxxx/resourceGroups/example-rg/providers/Microsoft.ManagedNetworkFabric/ipCommunities/example-ipCommunityName"
             ],
             "ipExtendedCommunityIds": [
-              "id"
+              "/subscriptions/xxxxx-xxxx-xxxx-xxxx-xxxxx/resourceGroups/example-rg/providers/Microsoft.ManagedNetworkFabric/ipExtendedCommunities/example-ipExtendedCommunityName"
             ],
-            "ipPrefixId": "id"
+            "ipPrefixId": "/subscriptions/xxxxx-xxxx-xxxx-xxxx-xxxxx/resourceGroups/example-rg/providers/Microsoft.ManagedNetworkFabric/ipPrefixes/example-ipPrefixName"
           },
           "action": {
             "localPreference": 2,
@@ -24,34 +24,34 @@
             "ipCommunityProperties": {
               "add": {
                 "ipCommunityIds": [
-                  "id"
+                  "/subscriptions/xxxxx-xxxx-xxxx-xxxx-xxxxx/resourceGroups/example-rg/providers/Microsoft.ManagedNetworkFabric/ipCommunities/example-ipCommunityName"
                 ]
               },
               "delete": {
                 "ipCommunityIds": [
-                  "id"
+                  "/subscriptions/xxxxx-xxxx-xxxx-xxxx-xxxxx/resourceGroups/example-rg/providers/Microsoft.ManagedNetworkFabric/ipCommunities/example-ipCommunityName"
                 ]
               },
               "set": {
                 "ipCommunityIds": [
-                  "id"
+                  "/subscriptions/xxxxx-xxxx-xxxx-xxxx-xxxxx/resourceGroups/example-rg/providers/Microsoft.ManagedNetworkFabric/ipCommunities/example-ipCommunityName"
                 ]
               }
             },
             "ipExtendedCommunityProperties": {
               "add": {
                 "ipExtendedCommunityIds": [
-                  "id"
+                  "/subscriptions/xxxxx-xxxx-xxxx-xxxx-xxxxx/resourceGroups/example-rg/providers/Microsoft.ManagedNetworkFabric/ipExtendedCommunities/example-ipExtendedCommunityName"
                 ]
               },
               "delete": {
                 "ipExtendedCommunityIds": [
-                  "id"
+                  "/subscriptions/xxxxx-xxxx-xxxx-xxxx-xxxxx/resourceGroups/example-rg/providers/Microsoft.ManagedNetworkFabric/ipExtendedCommunities/example-ipExtendedCommunityName"
                 ]
               },
               "set": {
                 "ipExtendedCommunityIds": [
-                  "id"
+                  "/subscriptions/xxxxx-xxxx-xxxx-xxxx-xxxxx/resourceGroups/example-rg/providers/Microsoft.ManagedNetworkFabric/ipExtendedCommunities/example-ipExtendedCommunityName"
                 ]
               }
             }

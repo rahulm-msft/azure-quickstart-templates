@@ -73,10 +73,10 @@
       }
     },
     "importRoutePolicyId": {
-      "value": "<importRoutePolicyId>"
+      "value": "/subscriptions/xxxxx-xxxx-xxxx-xxxx-xxxxx/resourceGroups/example-rg/providers/microsoft.managednetworkfabric/routePolicies/example-routepolicy"
     },
     "exportRoutePolicyId": {
-      "value": "<exportRoutePolicyId>"
+      "value": "/subscriptions/xxxxx-xxxx-xxxx-xxxx-xxxxx/resourceGroups/example-rg/providers/microsoft.managednetworkfabric/routePolicies/example-routepolicy"
     }
   }
 }

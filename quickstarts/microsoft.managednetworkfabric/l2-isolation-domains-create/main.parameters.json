@@ -6,7 +6,7 @@
       "value": "l2DomainName"
     },
     "networkFabricId": {
-      "value": "<fabricId>"
+      "value": "/subscriptions/xxxxx-xxxx-xxxx-xxxx-xxxxx/resourceGroups/example-rg/providers/Microsoft.ManagedNetworkFabric/networkFabrics/example-fabricName"
     },
     "vlanId": {
       "value": 600

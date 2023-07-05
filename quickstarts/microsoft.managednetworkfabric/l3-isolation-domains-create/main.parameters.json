@@ -6,7 +6,7 @@
       "value": "l3IsolationDomainName"
     },
     "networkFabricId": {
-      "value": "<fabricId>"
+      "value": "/subscriptions/xxxxx-xxxx-xxxx-xxxx-xxxxx/resourceGroups/example-rg/providers/Microsoft.ManagedNetworkFabric/networkFabrics/example-fabricName"
     },
     "redistributeConnectedSubnets": {
       "value": "True"
@@ -30,7 +30,7 @@
     },
     "connectedSubnetRoutePolicy": {
       "value": {
-        "exportRoutePolicyId": "<exampleExportRoutePolicyId>"
+        "exportRoutePolicyId": "/subscriptions/xxxxx-xxxx-xxxx-xxxx-xxxxx/resourceGroups/example-rg/providers/microsoft.managednetworkfabric/routePolicies/example-routepolicy"
       }
     }
   }
