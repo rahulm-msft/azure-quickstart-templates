@@ -3,16 +3,26 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "ipPrefixName": {
-      "value": "ipPrefixName"
+      "value": "ipPrefixName-nullTest-1"
     },
     "ipPrefixRules": {
       "value": [
         {
           "action": "Deny",
           "sequenceNumber": 1234,
-          "networkPrefix": "1.1.1.0/24",
+          "networkPrefix": "1.1.1.0/24"
+        },
+        {
+          "action": "Deny",
+          "sequenceNumber": 1233,
+          "networkPrefix": "2.2.2.0/24"
+        },
+        {
+          "action": "Deny",
+          "sequenceNumber": 1232,
+          "networkPrefix": "3.3.3.0/24",
           "condition": "EqualTo",
-          "subnetMaskLength": 10
+          "subnetMaskLength": 24
         }
       ]
     }

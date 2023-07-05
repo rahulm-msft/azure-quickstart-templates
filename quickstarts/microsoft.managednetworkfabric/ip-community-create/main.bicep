@@ -19,7 +19,7 @@ param action string
   'NoExport'
   'GShut'
 ])
-param wellKnownCommunities array
+param wellKnownCommunities array = []
 
 @description('CommunityMembers of the Ip Community')
 param communityMembers array
@@ -30,7 +30,7 @@ resource ipCommunity 'Microsoft.ManagedNetworkFabric/ipCommunities@2023-02-01-pr
   location: location
   properties: {
     action: action
-    wellKnownCommunities: wellKnownCommunities
+    wellKnownCommunities: wellKnownCommunities != [] ? wellKnownCommunities : null
     communityMembers: communityMembers
   }
 }
