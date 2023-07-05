@@ -16,10 +16,10 @@
         "mtu": 1678,
         "vlanId": 701,
         "peerASN": 65234,
-        "primaryIpv4Prefix": "",
-        "primaryIpv6Prefix": "",
-        "secondaryIpv4Prefix": "",
-        "secondaryIpv6Prefix": ""
+        "primaryIpv4Prefix": "172.31.0.0/31",
+        "primaryIpv6Prefix": "3FFE:FFFF:0:CD30::a0/127",
+        "secondaryIpv4Prefix": "172.31.0.20/31",
+        "secondaryIpv6Prefix": "3FFE:FFFF:0:CD30::a0/127"
       }
     },
     "optionBProperties": {

@@ -12,20 +12,20 @@ param networkFabricId string
   'True'
   'False'
 ])
-param redistributeConnectedSubnets string
+param redistributeConnectedSubnets string = 'True'
 
 @description('Advertise Static Routes')
 @allowed([
   'True'
   'False'
 ])
-param redistributeStaticRoutes string
+param redistributeStaticRoutes string = 'False'
 
 @description('List of Ipv4 and Ipv6 route configurations')
-param aggregateRouteConfiguration object
+param aggregateRouteConfiguration object = {}
 
 @description('Connected Subnet RoutePolicy')
-param connectedSubnetRoutePolicy object
+param connectedSubnetRoutePolicy object = {}
 
 @description('Create L3 Isolation Domain  Resource')
 resource l3IsolationDomains 'Microsoft.ManagedNetworkFabric/l3IsolationDomains@2023-02-01-preview' = {

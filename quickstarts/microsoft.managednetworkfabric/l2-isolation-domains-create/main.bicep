@@ -11,7 +11,7 @@ param networkFabricId string
 param vlanId int
 
 @description('Maximum transmission unit')
-param mtu int
+param mtu int = 0
 
 @description('Create L2 Isolation Domain Resource')
 resource l2IsolationDomains 'Microsoft.ManagedNetworkFabric/l2IsolationDomains@2023-02-01-preview' = {
@@ -20,7 +20,7 @@ resource l2IsolationDomains 'Microsoft.ManagedNetworkFabric/l2IsolationDomains@2
   properties: {
     networkFabricId: networkFabricId
     vlanId: vlanId
-    mtu: mtu
+    mtu: mtu != 0 ? mtu : null
   }
 }
 

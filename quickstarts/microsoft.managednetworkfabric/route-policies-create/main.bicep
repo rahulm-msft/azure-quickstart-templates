@@ -12,7 +12,40 @@ resource routePolicies 'Microsoft.ManagedNetworkFabric/routePolicies@2023-02-01-
   name: routePolicyName
   location: location
   properties: {
-    statements: statements
+    statements: [for i in range(0, length(statements)): {
+      sequenceNumber: statements[i].sequenceNumber
+      condition: {
+        ipCommunityIds: contains(statements[i].condition, 'ipCommunityIds') ? statements[i].condition.ipCommunityIds : null
+        ipExtendedCommunityIds: contains(statements[i].condition, 'ipExtendedCommunityIds') ? statements[i].condition.ipExtendedCommunityIds : null
+        ipPrefixId: contains(statements[i].condition, 'ipPrefixId') ? statements[i].condition.ipPrefixId : null
+      }
+      action: {
+        localPreference: contains(statements[i].action, 'localPreference') ? statements[i].action.localPreference : null
+        actionType: statements[i].action.actionType
+        ipCommunityProperties: contains(statements[i].action, 'ipCommunityProperties') ? {
+          add: contains(statements[i].action.ipCommunityProperties, 'add') ? {
+            ipCommunityIds: contains(statements[i].action.ipCommunityProperties.add, 'ipCommunityIds') ? statements[i].action.ipCommunityProperties.add.ipCommunityIds : null
+          } : null
+          delete: contains(statements[i].action.ipCommunityProperties, 'delete') ? {
+            ipCommunityIds: contains(statements[i].action.ipCommunityProperties.delete, 'ipCommunityIds') ? statements[i].action.ipCommunityProperties.delete.ipCommunityIds : null
+          } : null
+          set: contains(statements[i].action.ipCommunityProperties, 'set') ? {
+            ipCommunityIds: contains(statements[i].action.ipCommunityProperties.set, 'ipCommunityIds') ? statements[i].action.ipCommunityProperties.set.ipCommunityIds : null
+          } : null
+        } : null
+        ipExtendedCommunityProperties: contains(statements[i].action, 'ipExtendedCommunityProperties') ? {
+          add: contains(statements[i].action.ipExtendedCommunityProperties, 'add') ? {
+            ipExtendedCommunityIds: contains(statements[i].action.ipExtendedCommunityProperties.add, 'ipExtendedCommunityIds') ? statements[i].action.ipExtendedCommunityProperties.add.ipExtendedCommunityIds : null
+          } : null
+          delete: contains(statements[i].action.ipExtendedCommunityProperties, 'delete') ? {
+            ipExtendedCommunityIds: contains(statements[i].action.ipExtendedCommunityProperties.delete, 'ipExtendedCommunityIds') ? statements[i].action.ipExtendedCommunityProperties.delete.ipExtendedCommunityIds : null
+          } : null
+          set: contains(statements[i].action.ipExtendedCommunityProperties, 'set') ? {
+            ipExtendedCommunityIds: contains(statements[i].action.ipExtendedCommunityProperties.set, 'ipExtendedCommunityIds') ? statements[i].action.ipExtendedCommunityProperties.set.ipExtendedCommunityIds : null
+          } : null
+        } : null
+      }
+    }]
   }
 }
 

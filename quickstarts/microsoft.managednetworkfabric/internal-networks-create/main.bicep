@@ -10,27 +10,25 @@ param l3IsolationDomainName string
 param vlanId int
 
 @description('Maximum transmission unit')
-@minValue(1500)
-@maxValue(9000)
-param mtu int
+param mtu int = 0
 
 @description('List with object connected IPv4 Subnets')
-param connectedIPv4Subnets array
+param connectedIPv4Subnets array = []
 
 @description('List with object connected IPv6 Subnets')
-param connectedIPv6Subnets array
+param connectedIPv6Subnets array = []
 
 @description('Static Route Configuration model')
-param staticRouteConfiguration object
+param staticRouteConfiguration object = {}
 
 @description('BGP configuration properties')
-param bgpConfiguration object
+param bgpConfiguration object = {}
 
 @description('ARM resource ID of Import Route Policy')
-param importRoutePolicyId string
+param importRoutePolicyId string = ''
 
 @description('ARM resource ID of Export Route Policy')
-param exportRoutePolicyId string
+param exportRoutePolicyId string = ''
 
 @description('Name of existing l3 Isolation Domain Resource')
 resource l3IsolationDomains 'Microsoft.ManagedNetworkFabric/l3IsolationDomains@2023-02-01-preview' existing = {
@@ -43,22 +41,22 @@ resource internalNetwork 'Microsoft.ManagedNetworkFabric/l3IsolationDomains/inte
   parent: l3IsolationDomains
   properties: {
     vlanId: vlanId
-    mtu: mtu != '' ? mtu : null
+    mtu: mtu != 0 ? mtu : null
     connectedIPv4Subnets: connectedIPv4Subnets != [] ? connectedIPv4Subnets : null
     connectedIPv6Subnets: connectedIPv6Subnets != [] ? connectedIPv6Subnets : null
     staticRouteConfiguration: staticRouteConfiguration != {} ? {
-      ipv4Routes: staticRouteConfiguration.ipv4Routes != [] ? staticRouteConfiguration.ipv4Routes : null
-      ipv6Routes: staticRouteConfiguration.ipv6Routes != [] ? staticRouteConfiguration.ipv6Routes : null
+      ipv4Routes: (contains(staticRouteConfiguration, 'ipv4Routes') && staticRouteConfiguration.ipv4Routes != []) ? staticRouteConfiguration.ipv4Routes : null
+      ipv6Routes: (contains(staticRouteConfiguration, 'ipv6Routes')  && staticRouteConfiguration.ipv6Routes != []) ? staticRouteConfiguration.ipv6Routes : null
     } : null
     bgpConfiguration: bgpConfiguration != {} ? {
-      defaultRouteOriginate: bgpConfiguration.defaultRouteOriginate != '' ? bgpConfiguration.defaultRouteOriginate : null
+      defaultRouteOriginate: contains(bgpConfiguration, 'defaultRouteOriginate') ? bgpConfiguration.defaultRouteOriginate : null
       allowAS: bgpConfiguration.allowAS
-      allowASOverride: bgpConfiguration.allowASOverride != '' ? bgpConfiguration.allowASOverride : null
+      allowASOverride: contains(bgpConfiguration, 'allowASOverrides') ? bgpConfiguration.allowASOverride : null
       peerASN: bgpConfiguration.peerASN
-      ipv4ListenRangePrefixes: bgpConfiguration.ipv4ListenRangePrefixes != [] ? bgpConfiguration.ipv4ListenRangePrefixes : null
-      ipv6ListenRangePrefixes: bgpConfiguration.ipv6ListenRangePrefixes != [] ? bgpConfiguration.ipv6ListenRangePrefixes : null
-      ipv4NeighborAddress: bgpConfiguration.ipv4NeighborAddress != [] ? bgpConfiguration.ipv4NeighborAddress : null
-      ipv6NeighborAddress: bgpConfiguration.ipv6NeighborAddress != [] ? bgpConfiguration.ipv6NeighborAddress : null
+      ipv4ListenRangePrefixes: contains(bgpConfiguration, 'ipv4ListenRangePrefixes') ? bgpConfiguration.ipv4ListenRangePrefixes : null
+      ipv6ListenRangePrefixes: contains(bgpConfiguration, 'ipv6ListenRangePrefixes') ? bgpConfiguration.ipv6ListenRangePrefixes : null
+      ipv4NeighborAddress: contains(bgpConfiguration, 'ipv4NeighborAddress') ? bgpConfiguration.ipv4NeighborAddress : null
+      ipv6NeighborAddress: contains(bgpConfiguration, 'ipv6NeighborAddress') ? bgpConfiguration.ipv6NeighborAddress : null
     } : null
     importRoutePolicyId: importRoutePolicyId != '' ? importRoutePolicyId : null
     exportRoutePolicyId: exportRoutePolicyId != '' ? exportRoutePolicyId : null

@@ -6,13 +6,16 @@
       "value": "fabricName"
     },
     "networkFabricControllerId": {
-      "value": "<controllerId>"
+      "value": "/subscriptions/61065ccc-9543-4b91-b2d1-0ce42a914507/resourceGroups/nfa-tool-ts-clisdktest-nfcrg060523/providers/Microsoft.ManagedNetworkFabric/networkFabricControllers/nfa-tool-ts-nfc060223"
+    },
+    "networkFabricSku": {
+      "value": "fab1"
     },
     "rackCount": {
       "value": 3
     },
     "serverCountPerRack": {
-      "value": 4
+      "value": 7
     },
     "ipv4Prefix": {
       "value": "10.0.0.1/19"
@@ -23,50 +26,56 @@
     "fabricASN": {
       "value": 65234
     },
-    "nfTSconfUsername": {
-      "value": "username"
-    },
-    "nfTSconfPassword": {
-      "value": "password"
-    },
-    "nfTSconfSerialNumber": {
-      "value": "1234"
-    },
-    "nfTSconfPrimaryIpv4Prefix": {
-      "value": "10.13.0.0/21"
-    },
-    "nfTSconfPrimaryIpv6Prefix": {
-      "value": "3FE:FFF:C30::a0/12"
-    },
-    "nfTSconfSecondaryIpv4Prefix": {
-      "value": "10.13.0.0/21"
-    },
-    "nfTSconfSecondaryIpv6Prefix": {
-      "value": ""
-    },
-    "nfMNconfInfraVpn": {
+    "terminalServerConfiguration": {
       "value": {
-        "peeringOption": "OptionB",
-        "optionBProperties": {
-          "importRouteTargets": [
-            "12345:12345"
-          ],
-          "exportRouteTargets": [
-            "12345:12345"
-          ]
-        }
+        "username": "username",
+        "password": "password",
+        "serialNumber": "1234",
+        "primaryIpv4Prefix": "172.31.0.0/30",
+        "primaryIpv6Prefix": "",
+        "secondaryIpv4Prefix": "172.31.0.4/30",
+        "secondaryIpv6Prefix": ""
       }
     },
-    "nfMNconfWorkloadVpn": {
+    "managementNetworkConfiguration": {
       "value": {
-        "peeringOption": "OptionB",
-        "optionBProperties": {
-          "importRouteTargets": [
-            "12345:12345"
-          ],
-          "exportRouteTargets": [
-            "12345:12345"
-          ]
+        "infrastructureVpnConfiguration": {
+          "peeringOption": "OptionB",
+          "optionBProperties": {
+            "importRouteTargets": [
+              "12345:12345"
+            ],
+            "exportRouteTargets": [
+              "12345:12345"
+            ]
+          },
+          "optionAProperties": {
+            "mtu": 1500,
+            "vlanId": 520,
+            "peerASN": 65133,
+            "primaryIpv4Prefix": "172.31.0.0/31",
+            "secondaryIpv4Prefix": "172.31.0.20/31"
+          }
+        },
+        "workloadVpnConfiguration": {
+          "peeringOption": "OptionB",
+          "optionBProperties": {
+            "importRouteTargets": [
+              "12345:12345"
+            ],
+            "exportRouteTargets": [
+              "12345:12345"
+            ]
+          },
+          "optionAProperties": {
+            "mtu": 1500,
+            "vlanId": 520,
+            "peerASN": 65133,
+            "primaryIpv4Prefix": "172.31.0.0/31",
+            "primaryIpv6Prefix": "3FFE:FFFF:0:CD30::a0/127",
+            "secondaryIpv4Prefix": "172.31.0.20/31",
+            "secondaryIpv6Prefix": "3FFE:FFFF:0:CD30::a0/127"
+          }
         }
       }
     }

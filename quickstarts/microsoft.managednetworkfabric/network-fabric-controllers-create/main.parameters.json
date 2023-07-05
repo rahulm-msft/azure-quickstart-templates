@@ -1,24 +1,39 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {
-        "networkFabricControllerName": {
-            "value": "controllerName"
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "networkFabricControllerName": {
+      "value": "networkFabricControllerName"
+    },
+    "infrastructureExpressRouteConnections": {
+      "value": [
+        {
+          "expressRouteCircuitId": "infraExRCircuitId",
+          "expressRouteAuthorizationKey": "infraExRAuthKey"
         },
-        "infraExRCircuitId": {
-            "value": "aaaaaa"
-        },
-        "infraExRAuthKey": {
-            "value": "abcdefgh"
-        },
-        "workloadExRCircuitId": {
-            "value": "bbbbbb"
-        },
-        "workloadExRAuthKey": {
-            "value": "abcdefgh"
-        },
-        "ipv4AddressSpace": {
-            "value": "10.0.0.0/19"
+        {
+          "expressRouteCircuitId": "infraExRCircuitId1",
+          "expressRouteAuthorizationKey": "infraExRAuthKey1"
         }
+      ]
+    },
+    "workloadExpressRouteConnections": {
+      "value": [
+        {
+          "expressRouteCircuitId": "infraExRCircuitId",
+          "expressRouteAuthorizationKey": "infraExRAuthKey"
+        },
+        {
+          "expressRouteCircuitId": "infraExRCircuitId1",
+          "expressRouteAuthorizationKey": "infraExRAuthKey1"
+        }
+      ]
+    },
+    "ipv4AddressSpace": {
+      "value": ""
+    },
+    "ipv6AddressSpace": {
+      "value": ""
     }
+  }
 }

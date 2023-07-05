@@ -8,7 +8,7 @@ param location string = resourceGroup().location
 param networkFabricControllerId string
 
 @description('Name of the Network Fabric SKU')
-param networkFabricSku string = 'fab1'
+param networkFabricSku string
 
 @minValue(2)
 @maxValue(8)
@@ -21,43 +21,21 @@ param rackCount int
 param serverCountPerRack int
 
 @description('IPv4 Prefix for Management Network')
-param ipv4Prefix string
+param ipv4Prefix string = ''
 
 @description('IPv6 Prefix for Management Network')
-param ipv6Prefix string
+param ipv6Prefix string = ''
 
 @minValue(1)
 @maxValue(65535)
 @description('ASN of CE devices for CE/PE connectivity')
 param fabricASN int
 
-@description('Username of terminal server')
-param nfTSconfUsername string
+@description('Network and credentials configuration currently applied to terminal server')
+param terminalServerConfiguration object
 
-@secure()
-@description('Password of terminal server')
-param nfTSconfPassword string
-
-@description('Serial Number of Terminal server')
-param nfTSconfSerialNumber string
-
-@description('IPv4 Address Prefix of CE-PE interconnect links')
-param nfTSconfPrimaryIpv4Prefix string
-
-@description('IPv6 Address Prefix of CE-PE interconnect links')
-param nfTSconfPrimaryIpv6Prefix string
-
-@description('Secondary IPv6 Address Prefix of CE-PE interconnect links')
-param nfTSconfSecondaryIpv4Prefix string
-
-@description('Secondary IPv6 Address Prefix of CE-PE interconnect links')
-param nfTSconfSecondaryIpv6Prefix string
-
-@description('Manage the management VPN connection between Network Fabric and infrastructure services in Network Fabric Controller')
-param nfMNconfInfraVpn object
-
-@description('Manage the management VPN connection between Network Fabric and workload services in Network Fabric Controller')
-param nfMNconfWorkloadVpn object
+@description('Configuration to be used to setup the management network')
+param managementNetworkConfiguration object
 
 @description('Create Network Fabric Resource')
 resource networkFabrics 'Microsoft.ManagedNetworkFabric/networkFabrics@2023-02-01-preview' = {
@@ -72,17 +50,47 @@ resource networkFabrics 'Microsoft.ManagedNetworkFabric/networkFabrics@2023-02-0
     fabricASN: fabricASN
     networkFabricControllerId: networkFabricControllerId
     terminalServerConfiguration: {
-      username: nfTSconfUsername
-      password: nfTSconfPassword
-      serialNumber: nfTSconfSerialNumber
-      primaryIpv4Prefix: nfTSconfPrimaryIpv4Prefix != '' ? nfTSconfPrimaryIpv4Prefix : null
-      primaryIpv6Prefix: nfTSconfPrimaryIpv6Prefix != '' ? nfTSconfPrimaryIpv6Prefix : null
-      secondaryIpv4Prefix: nfTSconfSecondaryIpv4Prefix != '' ? nfTSconfSecondaryIpv4Prefix : null
-      secondaryIpv6Prefix: nfTSconfSecondaryIpv6Prefix != '' ? nfTSconfSecondaryIpv6Prefix : null
+      username: terminalServerConfiguration.username
+      password: terminalServerConfiguration.password
+      serialNumber: contains(terminalServerConfiguration, 'serialNumber') ? terminalServerConfiguration.serialNumber : null
+      primaryIpv4Prefix: terminalServerConfiguration.primaryIpv4Prefix
+      primaryIpv6Prefix: contains(terminalServerConfiguration, 'primaryIpv6Prefix') ? terminalServerConfiguration.primaryIpv6Prefix : null
+      secondaryIpv4Prefix: terminalServerConfiguration.secondaryIpv4Prefix
+      secondaryIpv6Prefix: contains(terminalServerConfiguration, 'secondaryIpv6Prefix') ? terminalServerConfiguration.secondaryIpv6Prefix : null
     }
     managementNetworkConfiguration: {
-      infrastructureVpnConfiguration: nfMNconfInfraVpn
-      workloadVpnConfiguration: nfMNconfWorkloadVpn
+      infrastructureVpnConfiguration: {
+        peeringOption: managementNetworkConfiguration.infrastructureVpnConfiguration.peeringOption
+        optionBProperties: {
+          importRouteTargets: managementNetworkConfiguration.infrastructureVpnConfiguration.optionBProperties.importRouteTargets
+          exportRouteTargets: managementNetworkConfiguration.infrastructureVpnConfiguration.optionBProperties.exportRouteTargets
+        }
+        optionAProperties: contains(managementNetworkConfiguration.infrastructureVpnConfiguration, 'optionAProperties') ? {
+          mtu: contains(managementNetworkConfiguration.infrastructureVpnConfiguration.optionAProperties, 'mtu') ? managementNetworkConfiguration.infrastructureVpnConfiguration.optionAProperties.mtu : null
+          vlanId: contains(managementNetworkConfiguration.infrastructureVpnConfiguration.optionAProperties, 'vlanId') ? managementNetworkConfiguration.infrastructureVpnConfiguration.optionAProperties.vlanId : null
+          peerASN: contains(managementNetworkConfiguration.infrastructureVpnConfiguration.optionAProperties, 'peerASN') ? managementNetworkConfiguration.infrastructureVpnConfiguration.optionAProperties.peerASN : null
+          primaryIpv4Prefix: contains(managementNetworkConfiguration.infrastructureVpnConfiguration.optionAProperties, 'primaryIpv4Prefix') ? managementNetworkConfiguration.infrastructureVpnConfiguration.optionAProperties.primaryIpv4Prefix : null
+          primaryIpv6Prefix: contains(managementNetworkConfiguration.infrastructureVpnConfiguration.optionAProperties, 'primaryIpv6Prefix') ? managementNetworkConfiguration.infrastructureVpnConfiguration.optionAProperties.primaryIpv6Prefix : null
+          secondaryIpv4Prefix: contains(managementNetworkConfiguration.infrastructureVpnConfiguration.optionAProperties, 'secondaryIpv4Prefix') ? managementNetworkConfiguration.infrastructureVpnConfiguration.optionAProperties.secondaryIpv4Prefix : null
+          secondaryIpv6Prefix: contains(managementNetworkConfiguration.infrastructureVpnConfiguration.optionAProperties, 'secondaryIpv6Prefix') ? managementNetworkConfiguration.infrastructureVpnConfiguration.optionAProperties.secondaryIpv6Prefix : null
+        } : null
+      }
+      workloadVpnConfiguration: {
+        peeringOption: managementNetworkConfiguration.workloadVpnConfiguration.peeringOption
+        optionBProperties: {
+          importRouteTargets: managementNetworkConfiguration.workloadVpnConfiguration.optionBProperties.importRouteTargets
+          exportRouteTargets: managementNetworkConfiguration.workloadVpnConfiguration.optionBProperties.exportRouteTargets
+        }
+        optionAProperties: contains(managementNetworkConfiguration.workloadVpnConfiguration, 'optionAProperties') ? {
+          mtu: contains(managementNetworkConfiguration.workloadVpnConfiguration.optionAProperties, 'mtu') ? managementNetworkConfiguration.workloadVpnConfiguration.optionAProperties.mtu : null
+          vlanId: contains(managementNetworkConfiguration.workloadVpnConfiguration.optionAProperties, 'vlanId') ? managementNetworkConfiguration.workloadVpnConfiguration.optionAProperties.vlanId : null
+          peerASN: contains(managementNetworkConfiguration.workloadVpnConfiguration.optionAProperties, 'peerASN') ? managementNetworkConfiguration.workloadVpnConfiguration.optionAProperties.peerASN : null
+          primaryIpv4Prefix: contains(managementNetworkConfiguration.workloadVpnConfiguration.optionAProperties, 'primaryIpv4Prefix') ? managementNetworkConfiguration.workloadVpnConfiguration.optionAProperties.primaryIpv4Prefix : null
+          primaryIpv6Prefix: contains(managementNetworkConfiguration.workloadVpnConfiguration.optionAProperties, 'primaryIpv6Prefix') ? managementNetworkConfiguration.workloadVpnConfiguration.optionAProperties.primaryIpv6Prefix : null
+          secondaryIpv4Prefix: contains(managementNetworkConfiguration.workloadVpnConfiguration.optionAProperties, 'secondaryIpv4Prefix') ? managementNetworkConfiguration.workloadVpnConfiguration.optionAProperties.secondaryIpv4Prefix : null
+          secondaryIpv6Prefix: contains(managementNetworkConfiguration.workloadVpnConfiguration.optionAProperties, 'secondaryIpv6Prefix') ? managementNetworkConfiguration.workloadVpnConfiguration.optionAProperties.secondaryIpv6Prefix : null
+        } : null
+      }
     }
   }
 }

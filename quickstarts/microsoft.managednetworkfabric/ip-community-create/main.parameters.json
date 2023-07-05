@@ -3,10 +3,15 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "ipCommunityName": {
-      "value": "ipCommunityName-emptyTest"
+      "value": "ipCommunityName"
     },
     "action": {
       "value": "Permit"
+    },
+    "wellKnownCommunities": {
+      "value": [
+        "GShut"
+      ]
     },
     "communityMembers": {
       "value": [
