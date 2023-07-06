@@ -1,0 +1,108 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.18.4.5664",
+      "templateHash": "6804804567677307998"
+    }
+  },
+  "parameters": {
+    "internalNetworkName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of Internal Network"
+      }
+    },
+    "l3IsolationDomainName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the L3 Isolation Domain"
+      }
+    },
+    "vlanId": {
+      "type": "int",
+      "maxValue": 4095,
+      "minValue": 100,
+      "metadata": {
+        "description": "Vlan identifier value"
+      }
+    },
+    "mtu": {
+      "type": "int",
+      "defaultValue": 0,
+      "metadata": {
+        "description": "Maximum transmission unit"
+      }
+    },
+    "connectedIPv4Subnets": {
+      "type": "array",
+      "defaultValue": [],
+      "metadata": {
+        "description": "List with object connected IPv4 Subnets"
+      }
+    },
+    "connectedIPv6Subnets": {
+      "type": "array",
+      "defaultValue": [],
+      "metadata": {
+        "description": "List with object connected IPv6 Subnets"
+      }
+    },
+    "staticRouteConfiguration": {
+      "type": "object",
+      "defaultValue": {},
+      "metadata": {
+        "description": "Static Route Configuration model"
+      }
+    },
+    "bgpConfiguration": {
+      "type": "object",
+      "defaultValue": {},
+      "metadata": {
+        "description": "BGP configuration properties"
+      }
+    },
+    "importRoutePolicyId": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "ARM resource ID of Import Route Policy"
+      }
+    },
+    "exportRoutePolicyId": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "ARM resource ID of Export Route Policy"
+      }
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.ManagedNetworkFabric/l3IsolationDomains/internalNetworks",
+      "apiVersion": "2023-02-01-preview",
+      "name": "[format('{0}/{1}', parameters('l3IsolationDomainName'), parameters('internalNetworkName'))]",
+      "properties": {
+        "vlanId": "[parameters('vlanId')]",
+        "mtu": "[if(not(equals(parameters('mtu'), 0)), parameters('mtu'), null())]",
+        "connectedIPv4Subnets": "[if(not(equals(parameters('connectedIPv4Subnets'), createArray())), parameters('connectedIPv4Subnets'), null())]",
+        "connectedIPv6Subnets": "[if(not(equals(parameters('connectedIPv6Subnets'), createArray())), parameters('connectedIPv6Subnets'), null())]",
+        "staticRouteConfiguration": "[if(not(equals(parameters('staticRouteConfiguration'), createObject())), createObject('ipv4Routes', if(and(contains(parameters('staticRouteConfiguration'), 'ipv4Routes'), not(equals(parameters('staticRouteConfiguration').ipv4Routes, createArray()))), parameters('staticRouteConfiguration').ipv4Routes, null()), 'ipv6Routes', if(and(contains(parameters('staticRouteConfiguration'), 'ipv6Routes'), not(equals(parameters('staticRouteConfiguration').ipv6Routes, createArray()))), parameters('staticRouteConfiguration').ipv6Routes, null())), null())]",
+        "bgpConfiguration": "[if(not(equals(parameters('bgpConfiguration'), createObject())), createObject('defaultRouteOriginate', if(contains(parameters('bgpConfiguration'), 'defaultRouteOriginate'), parameters('bgpConfiguration').defaultRouteOriginate, null()), 'allowAS', parameters('bgpConfiguration').allowAS, 'allowASOverride', if(contains(parameters('bgpConfiguration'), 'allowASOverride'), parameters('bgpConfiguration').allowASOverride, null()), 'peerASN', parameters('bgpConfiguration').peerASN, 'ipv4ListenRangePrefixes', if(contains(parameters('bgpConfiguration'), 'ipv4ListenRangePrefixes'), parameters('bgpConfiguration').ipv4ListenRangePrefixes, null()), 'ipv6ListenRangePrefixes', if(contains(parameters('bgpConfiguration'), 'ipv6ListenRangePrefixes'), parameters('bgpConfiguration').ipv6ListenRangePrefixes, null()), 'ipv4NeighborAddress', if(contains(parameters('bgpConfiguration'), 'ipv4NeighborAddress'), parameters('bgpConfiguration').ipv4NeighborAddress, null()), 'ipv6NeighborAddress', if(contains(parameters('bgpConfiguration'), 'ipv6NeighborAddress'), parameters('bgpConfiguration').ipv6NeighborAddress, null())), null())]",
+        "importRoutePolicyId": "[if(not(equals(parameters('importRoutePolicyId'), '')), parameters('importRoutePolicyId'), null())]",
+        "exportRoutePolicyId": "[if(not(equals(parameters('exportRoutePolicyId'), '')), parameters('exportRoutePolicyId'), null())]"
+      },
+      "metadata": {
+        "description": "Create Internal Network Resource"
+      }
+    }
+  ],
+  "outputs": {
+    "resourceID": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.ManagedNetworkFabric/l3IsolationDomains/internalNetworks', parameters('l3IsolationDomainName'), parameters('internalNetworkName'))]"
+    }
+  }
+}

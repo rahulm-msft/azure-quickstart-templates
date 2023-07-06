@@ -1,0 +1,86 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.18.4.5664",
+      "templateHash": "2505001419306297148"
+    }
+  },
+  "parameters": {
+    "externalNetworkName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the External Network"
+      }
+    },
+    "l3IsolationDomainName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the L3 Isolation Domain"
+      }
+    },
+    "peeringOption": {
+      "type": "string",
+      "allowedValues": [
+        "OptionA",
+        "OptionB"
+      ],
+      "metadata": {
+        "description": "Peering option list"
+      }
+    },
+    "optionAProperties": {
+      "type": "object",
+      "defaultValue": {},
+      "metadata": {
+        "description": "option A properties"
+      }
+    },
+    "optionBProperties": {
+      "type": "object",
+      "defaultValue": {},
+      "metadata": {
+        "description": "option B properties"
+      }
+    },
+    "importRoutePolicyId": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "ARM resource ID of importRoutePolicy"
+      }
+    },
+    "exportRoutePolicyId": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "ARM resource ID of exportRoutePolicy"
+      }
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.ManagedNetworkFabric/l3IsolationDomains/externalNetworks",
+      "apiVersion": "2023-02-01-preview",
+      "name": "[format('{0}/{1}', parameters('l3IsolationDomainName'), parameters('externalNetworkName'))]",
+      "properties": {
+        "peeringOption": "[parameters('peeringOption')]",
+        "optionAProperties": "[if(not(equals(parameters('optionAProperties'), createObject())), createObject('mtu', if(contains(parameters('optionAProperties'), 'mtu'), parameters('optionAProperties').mtu, null()), 'vlanId', parameters('optionAProperties').vlanId, 'peerASN', parameters('optionAProperties').peerASN, 'primaryIpv4Prefix', if(contains(parameters('optionAProperties'), 'primaryIpv4Prefix'), parameters('optionAProperties').primaryIpv4Prefix, null()), 'primaryIpv6Prefix', if(contains(parameters('optionAProperties'), 'primaryIpv6Prefix'), parameters('optionAProperties').primaryIpv6Prefix, null()), 'secondaryIpv4Prefix', if(contains(parameters('optionAProperties'), 'secondaryIpv4Prefix'), parameters('optionAProperties').secondaryIpv4Prefix, null()), 'secondaryIpv6Prefix', if(contains(parameters('optionAProperties'), 'secondaryIpv6Prefix'), parameters('optionAProperties').secondaryIpv6Prefix, null())), null())]",
+        "optionBProperties": "[if(not(equals(parameters('optionBProperties'), createObject())), createObject('importRouteTargets', if(contains(parameters('optionBProperties'), 'importRouteTargets'), parameters('optionBProperties').importRouteTargets, null()), 'exportRouteTargets', if(contains(parameters('optionBProperties'), 'exportRouteTargets'), parameters('optionBProperties').exportRouteTargets, null())), null())]",
+        "importRoutePolicyId": "[if(not(equals(parameters('importRoutePolicyId'), '')), parameters('importRoutePolicyId'), null())]",
+        "exportRoutePolicyId": "[if(not(equals(parameters('exportRoutePolicyId'), '')), parameters('exportRoutePolicyId'), null())]"
+      },
+      "metadata": {
+        "description": "Create External Network Resource"
+      }
+    }
+  ],
+  "outputs": {
+    "resourceID": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.ManagedNetworkFabric/l3IsolationDomains/externalNetworks', parameters('l3IsolationDomainName'), parameters('externalNetworkName'))]"
+    }
+  }
+}

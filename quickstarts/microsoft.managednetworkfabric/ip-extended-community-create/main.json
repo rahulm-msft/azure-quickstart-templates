@@ -1,0 +1,60 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.18.4.5664",
+      "templateHash": "378284430429719631"
+    }
+  },
+  "parameters": {
+    "ipExtendedCommunityName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the Ip Extended Community"
+      }
+    },
+    "location": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]",
+      "metadata": {
+        "description": "Azure Region for deployment of the Ip Prefix and associated resources"
+      }
+    },
+    "action": {
+      "type": "string",
+      "allowedValues": [
+        "Permit",
+        "Deny"
+      ],
+      "metadata": {
+        "description": "Action"
+      }
+    },
+    "routeTargets": {
+      "type": "array",
+      "metadata": {
+        "description": "Route Target List. The expected formats are ASN(plain):NN >> example 4294967294:50, ASN.ASN:NN >> example 65533.65333:40, IP-address:NN >> example 10.10.10.10:65535. The possible values of ASN,NN are in range of 0-65535, ASN(plain) is in range of 0-4294967295."
+      }
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.ManagedNetworkFabric/ipExtendedCommunities",
+      "apiVersion": "2023-02-01-preview",
+      "name": "[parameters('ipExtendedCommunityName')]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "action": "[parameters('action')]",
+        "routeTargets": "[parameters('routeTargets')]"
+      }
+    }
+  ],
+  "outputs": {
+    "resourceID": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.ManagedNetworkFabric/ipExtendedCommunities', parameters('ipExtendedCommunityName'))]"
+    }
+  }
+}

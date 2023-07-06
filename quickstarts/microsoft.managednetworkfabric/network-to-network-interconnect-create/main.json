@@ -1,0 +1,87 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.18.4.5664",
+      "templateHash": "17173191078586435241"
+    }
+  },
+  "parameters": {
+    "networkFabricName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the Network Fabric"
+      }
+    },
+    "networkToNetworkInterconnectName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the Network To Network Interconnect"
+      }
+    },
+    "nniType": {
+      "type": "string",
+      "defaultValue": "CE",
+      "allowedValues": [
+        "CE",
+        "NPB"
+      ],
+      "metadata": {
+        "description": "Type of NNI used"
+      }
+    },
+    "isManagementType": {
+      "type": "string",
+      "allowedValues": [
+        "True",
+        "False"
+      ],
+      "metadata": {
+        "description": "Configuration to use NNI for Infrastructure Management"
+      }
+    },
+    "useOptionB": {
+      "type": "string",
+      "allowedValues": [
+        "True",
+        "False"
+      ],
+      "metadata": {
+        "description": "Based on this parameter the layer2/layer3 is made as mandatory"
+      }
+    },
+    "layer2Configuration": {
+      "type": "object",
+      "defaultValue": {},
+      "metadata": {
+        "description": "Common properties for Layer2Configuration"
+      }
+    },
+    "layer3Configuration": {
+      "type": "object",
+      "defaultValue": {},
+      "metadata": {
+        "description": "Common properties for Layer3Configuration"
+      }
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.ManagedNetworkFabric/networkFabrics/networkToNetworkInterconnects",
+      "apiVersion": "2023-02-01-preview",
+      "name": "[format('{0}/{1}', parameters('networkFabricName'), parameters('networkToNetworkInterconnectName'))]",
+      "properties": {
+        "nniType": "[parameters('nniType')]",
+        "isManagementType": "[parameters('isManagementType')]",
+        "useOptionB": "[parameters('useOptionB')]",
+        "layer2Configuration": "[if(not(equals(parameters('layer2Configuration'), createObject())), createObject('portCount', if(contains(parameters('layer2Configuration'), 'portCount'), parameters('layer2Configuration').portCount, null()), 'mtu', parameters('layer2Configuration').mtu), null())]",
+        "layer3Configuration": "[if(not(equals(parameters('layer2Configuration'), createObject())), createObject('vlanId', if(contains(parameters('layer3Configuration'), 'vlanId'), parameters('layer3Configuration').vlanId, null()), 'peerASN', if(contains(parameters('layer3Configuration'), 'peerASN'), parameters('layer3Configuration').peerASN, null()), 'importRoutePolicyId', if(contains(parameters('layer3Configuration'), 'importRoutePolicyId'), parameters('layer3Configuration').importRoutePolicyId, null()), 'exportRoutePolicyId', if(contains(parameters('layer3Configuration'), 'exportRoutePolicyId'), parameters('layer3Configuration').exportRoutePolicyId, null()), 'primaryIpv4Prefix', if(contains(parameters('layer3Configuration'), 'primaryIpv4Prefix'), parameters('layer3Configuration').primaryIpv4Prefix, null()), 'primaryIpv6Prefix', if(contains(parameters('layer3Configuration'), 'primaryIpv6Prefix'), parameters('layer3Configuration').primaryIpv6Prefix, null()), 'secondaryIpv4Prefix', if(contains(parameters('layer3Configuration'), 'secondaryIpv4Prefix'), parameters('layer3Configuration').secondaryIpv4Prefix, null()), 'secondaryIpv6Prefix', if(contains(parameters('layer3Configuration'), 'secondaryIpv6Prefix'), parameters('layer3Configuration').secondaryIpv6Prefix, null())), null())]"
+      },
+      "metadata": {
+        "description": "Create Network To Network Interconnect Resource"
+      }
+    }
+  ]
+}

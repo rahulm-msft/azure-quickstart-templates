@@ -51,7 +51,7 @@ resource internalNetwork 'Microsoft.ManagedNetworkFabric/l3IsolationDomains/inte
     bgpConfiguration: bgpConfiguration != {} ? {
       defaultRouteOriginate: contains(bgpConfiguration, 'defaultRouteOriginate') ? bgpConfiguration.defaultRouteOriginate : null
       allowAS: bgpConfiguration.allowAS
-      allowASOverride: contains(bgpConfiguration, 'allowASOverrides') ? bgpConfiguration.allowASOverride : null
+      allowASOverride: bgpConfiguration.allowASOverride
       peerASN: bgpConfiguration.peerASN
       ipv4ListenRangePrefixes: contains(bgpConfiguration, 'ipv4ListenRangePrefixes') ? bgpConfiguration.ipv4ListenRangePrefixes : null
       ipv6ListenRangePrefixes: contains(bgpConfiguration, 'ipv6ListenRangePrefixes') ? bgpConfiguration.ipv6ListenRangePrefixes : null
