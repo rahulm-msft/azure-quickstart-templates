@@ -1,0 +1,276 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "networkFabricsName": {
+      "value": "rahul-nf021723"
+    },
+    "networkFabricsId": {
+      "value": "/subscriptions/d854f6e5-7f11-4515-9d58-2ef770a77ee2/resourceGroups/rahul-nfrg021723/providers/Microsoft.ManagedNetworkFabric/networkFabrics/rahul-nf021723"
+    },
+    "userIdentityName": {
+      "value": "userIdentityName"
+    },
+    "roleId": {
+      "value": "8e3af657-a8ff-443c-a75c-2fe8c4bcb635"
+    },
+    "wheelFileURL": {
+      "value": "https://aodscli.blob.core.windows.net/azcli/managednetworkfabric-0.1.0.post26-py3-none-any.whl"
+    },
+    "deploymentScriptsName": {
+      "value": "updateAdminState"
+    },
+    "l2Domain": {
+      "value": {
+        "rahul-fab3-l2domain1050": {
+          "properties": {
+            "vlanId": 1051,
+            "mtu": 1500
+          }
+        },
+        "rahul-fab3-l2domain1051": {
+          "properties": {
+            "vlanId": 1051,
+            "mtu": 1500
+          }
+        },
+        "rahul-fab3-l2domain1052": {
+          "properties": {
+            "vlanId": 1052,
+            "mtu": 1500
+          }
+        }
+      }
+    },
+    "ISD": {
+      "value": {
+        "rahul-fab3-l3domain1010": {
+          "properties": {
+            "internal": {
+              "importRoutePolicyIds": [],
+              "exportRoutePolicyIds": []
+            },
+            "external": {
+              "importRoutePolicyIds": [],
+              "exportRoutePolicyIds": [],
+              "optionBConfiguration": {
+                "importRouteTargets": [
+                  "1234:1235"
+                ],
+                "exportRouteTargets": [
+                  "1234:1234"
+                ]
+              }
+            }
+          },
+          "internalNetwork": [
+            {
+              "name": "rahul-fab3-internalnetwork-625",
+              "properties": {
+                "vlanId": 625,
+                "mtu": 1500,
+                "connectedIPv4Subnets": [
+                  {
+                    "prefix": "20.20.2.0/24",
+                    "gateway": "20.20.0.1"
+                  }
+                ],
+                "connectedIPv6Subnets": [],
+                "staticRouteConfiguration": {
+                  "ipv4Routes": [],
+                  "ipv6Routes": []
+                },
+                "bgpConfiguration": {
+                  "defaultRouteOriginate": true,
+                  "fabricASN": 65046,
+                  "peerASN": 65510,
+                  "ipv4Prefix": "20.20.2.0/24",
+                  "ipv6Prefix": "",
+                  "ipv4NeighborAddress": [],
+                  "ipv6NeighborAddress": []
+                }
+              }
+            },
+            {
+              "name": "rahul-fab3-internalnetwork-615",
+              "properties": {
+                "vlanId": 615,
+                "mtu": 1500,
+                "connectedIPv4Subnets": [],
+                "connectedIPv6Subnets": [
+                  {
+                    "prefix": "20:101:1::0/64",
+                    "gateway": "20:101:1::1"
+                  }
+                ],
+                "staticRouteConfiguration": {
+                  "ipv4Routes": [],
+                  "ipv6Routes": [
+                    {
+                      "prefix": "20:101:5::0/64",
+                      "nextHop": [
+                        "123",
+                        "221"
+                      ]
+                    }
+                  ]
+                },
+                "bgpConfiguration": {
+                  "defaultRouteOriginate": true,
+                  "fabricASN": 65046,
+                  "peerASN": 65510,
+                  "ipv4Prefix": "",
+                  "ipv6Prefix": "20:101:5::0/64",
+                  "ipv4NeighborAddress": [],
+                  "ipv6NeighborAddress": [
+                    {
+                      "address": "20:101:1::11"
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "externalNetwork": [
+            {
+              "name": "rahul-fab3-externalnetwork-650",
+              "properties": {
+                "vlanId": 650,
+                "fabricASN": 65046,
+                "peerASN": 65046,
+                "primaryIpv4Prefix": "20.18.0.148/30",
+                "secondaryIpv4Prefix": "20.18.0.152/30",
+                "primaryIpv6Prefix": "",
+                "secondaryIpv6Prefix": ""
+              }
+            }
+          ]
+        },
+        "rahul-fab3-l3domain1011": {
+          "properties": {
+            "internal": {
+              "importRoutePolicyIds": [],
+              "exportRoutePolicyIds": []
+            },
+            "external": {
+              "importRoutePolicyIds": [],
+              "exportRoutePolicyIds": [],
+              "optionBConfiguration": {
+                "importRouteTargets": [
+                  "1234:1235"
+                ],
+                "exportRouteTargets": [
+                  "1234:1234"
+                ]
+              }
+            }
+          },
+          "internalNetwork": [
+            {
+              "name": "rahul-fab3-internalnetwork-626",
+              "properties": {
+                "vlanId": 626,
+                "mtu": 1500,
+                "connectedIPv4Subnets": [
+                  {
+                    "prefix": "20.20.2.0/24",
+                    "gateway": "20.20.0.1",
+                    "annotation": ""
+                  }
+                ],
+                "connectedIPv6Subnets": [],
+                "staticRouteConfiguration": {
+                  "ipv4Routes": [],
+                  "ipv6Routes": []
+                },
+                "bgpConfiguration": {
+                  "defaultRouteOriginate": true,
+                  "fabricASN": 65046,
+                  "peerASN": 65510,
+                  "ipv4Prefix": "20.20.2.0/24",
+                  "ipv6Prefix": "",
+                  "ipv4NeighborAddress": [],
+                  "ipv6NeighborAddress": []
+                }
+              }
+            }
+          ],
+          "externalNetwork": [
+            {
+              "name": "rahul-fab3-externalnetwork-651",
+              "properties": {
+                "vlanId": 651,
+                "fabricASN": 65046,
+                "peerASN": 65046,
+                "primaryIpv4Prefix": "20.18.0.148/30",
+                "secondaryIpv4Prefix": "20.18.0.152/30",
+                "primaryIpv6Prefix": "",
+                "secondaryIpv6Prefix": ""
+              }
+            }
+          ]
+        },
+        "rahul-fab3-l3domain1015": {
+          "properties": {
+            "internal": {
+              "importRoutePolicyIds": [],
+              "exportRoutePolicyIds": []
+            },
+            "external": {
+              "importRoutePolicyIds": [],
+              "exportRoutePolicyIds": [],
+              "optionBConfiguration": {
+                "importRouteTargets": [
+                  "1234:1235"
+                ],
+                "exportRouteTargets": [
+                  "1234:1234"
+                ]
+              }
+            }
+          },
+          "internalNetwork": [
+            {
+              "name": "rahul-fab3-internalnetwork-627",
+              "properties": {
+                "vlanId": 627,
+                "mtu": 1500,
+                "connectedIPv4Subnets": [
+                  {
+                    "prefix": "20.20.2.0/24",
+                    "gateway": "20.20.0.1",
+                    "annotation": ""
+                  }
+                ],
+                "connectedIPv6Subnets": [],
+                "bgpConfiguration": {
+                  "fabricASN": 65046,
+                  "peerASN": 65510,
+                  "defaultRouteOriginate": true,
+                  "ipv4Prefix": "20.20.2.0/24",
+                  "ipv6Prefix": "",
+                  "ipv4NeighborAddress": [],
+                  "ipv6NeighborAddress": []
+                }
+              }
+            }
+          ],
+          "externalNetwork": [
+            {
+              "name": "rahul-fab3-externalnetwork-652",
+              "properties": {
+                "vlanId": 652,
+                "fabricASN": 65046,
+                "peerASN": 65046,
+                "primaryIpv4Prefix": "20.18.0.148/30",
+                "secondaryIpv4Prefix": "20.18.0.152/30",
+                "primaryIpv6Prefix": "",
+                "secondaryIpv6Prefix": ""
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

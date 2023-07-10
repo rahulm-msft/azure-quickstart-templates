@@ -1,0 +1,146 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "networkFabricControllerName": {
+      "value": "r-nfc021623"
+    },
+    "nfcResourceGroupName": {
+      "value": "rahul-nfcrg021623"
+    },
+    "nfcInfraExRCircuitId": {
+      "value": "aaaaaa"
+    },
+    "nfcInfraExRAuthKey": {
+      "value": "bbbbbb"
+    },
+    "nfcWorkloadExRCircuitId": {
+      "value": "cccccc"
+    },
+    "nfcWorkloadExRAuthKey": {
+      "value": "dddddd"
+    },
+    "nfcIpv4AddressSpace": {
+      "value": "20.0.0.0/19"
+    },
+    "networkFabricName": {
+      "value": "r-nf021623"
+    },
+    "networkFabricSku": {
+      "value": "fab1"
+    },
+    "nfNniLayer2conf": {
+      "value": {}
+    },
+    "nfNniLayer3conf": {
+      "value": {
+        "vlanId": 10,
+        "fabricAsn": 65146,
+        "peerAsn": 65146,
+        "primaryIpv4Prefix": "20.0.0.1/30",
+        "secondaryIpv4Prefix": "20.1.12.11/30",
+        "primaryIpv6Prefix": "20:0:0:0::11/123",
+        "secondaryIpv6Prefix": "20:4:3:1::2/121"
+      }
+    },
+    "nfTSconfUsername": {
+      "value": "root"
+    },
+    "nfTSconfPassword": {
+      "value": "ABcdef12!!@"
+    },
+    "nfTSconfPrimaryIpv4Prefix": {
+      "value": "20.0.0.1/29"
+    },
+    "nfTSconfSecondaryIpv4Prefix": {
+      "value": "20.0.1.1/29"
+    },
+    "nfMNconfIpv4Prefix": {
+      "value": "20.1.0.0/18"
+    },
+    "nfMNconfManVpn": {
+      "value": {
+        "peeringOption": "OptionA",
+        "optionAProperties": {
+          "mtu": 1501,
+          "vlanId": 16,
+          "fabricAsn": 65146,
+          "peerAsn": 65146,
+          "primaryIpv4Prefix": "20.8.0.4/23",
+          "primaryIpv6Prefix": "",
+          "secondaryIpv4Prefix": "20.1.0.1/20",
+          "secondaryIpv6Prefix": ""
+        },
+        "optionBProperties": {
+          "importRouteTargets": [
+            "65023:11139"
+          ],
+          "exportRouteTargets": [
+            "65023:11139"
+          ]
+        }
+      }
+    },
+    "nfMNconfWorkloadVpn": {
+      "value": {
+        "optionBProperties": {
+          "importRouteTargets": [
+            "65023:11150"
+          ],
+          "exportRouteTargets": [
+            "65023:11150"
+          ]
+        }
+      }
+    },
+    "racks": {
+      "value": {
+        "fab3AggRack": {
+          "properties": {
+            "networkRackSku": "abc"
+          }
+        },
+        "fab3CompRack1": {
+          "properties": {
+            "networkRackSku": "abc"
+          }
+        },
+        "fab3CompRack2": {
+          "properties": {
+            "networkRackSku": "abc"
+          }
+        }
+      }
+    },
+    "deviceMap": {
+      "value": {
+        "r-nf021623-AggrRack-CE1": "Arista;DCS-7280DR3-24;12.05;JPEed21115459",
+        "r-nf021623-AggrRack-CE2": "Arista;DCS-7280DR3-24;12.05;JPE21wwq115440",
+        "r-nf021623-AggrRack-MgmtSwitch1": "Arista;DCS-7010TX-48;12.02;JPwe  E22071882",
+        "r-nf021623-CompRack1-TOR1": "Arista;DCS-7160-32CQ;11.02;wwww",
+        "r-nf021623-CompRack1-TOR2": "Arista;DCS-7160-32CQ;11.01;Sqdq19261757",
+        "r-nf021623-CompRack1-MgmtSwitch": "Arista;DCS-7010TX-48;12.02;wdwq",
+        "r-nf021623-CompRack2-TOR3": "Arista;DCS-7160-32CQ;11.01;SGD1wqdq0996",
+        "r-nf021623-CompRack2-TOR4": "Arista;DCS-7160-32CQ;11.02;Sqwee9331029",
+        "r-nf021623-CompRack2-MgmtSwitch": "Arista;DCS-70weTX-48;12.02;JPE22074117",
+        "r-nf021623-AggrRack-MgmtSwitch2": "Arista;DCS-7wew10TX-48;12.00;XXXXXXXXXXX",
+        "r-nf021623-AggrRack-TOR17": "Arista;DCS-7160-32CQ;11.01;XXXkkdjdXXX",
+        "r-nf021623-AggrRack-TOR18": "Arista;DCS-7160-32CQ;11.01;jkkkjjkj",
+        "r-nf021623-AggrRack-NPB1": "Arista;DCS-7280DR3K-24;12.04;hklklw113282",
+        "r-nf021623-AggrRack-NPB2": "Arista;DCS-7280DR3K-24;12.04;Jhjkbnjklsd12419"
+      }
+    },
+    "userIdentityName": {
+      "value": "userIdentityName"
+    },
+    "roleId": {
+      "value": "8e3af657-a8ff-443c-a75c-2fe8c4bcb635"
+    },
+    "wheelFileURL": {
+      "value": "https://aodscli.blob.core.windows.net/azcli/managednetworkfabric-0.1.0.post26-py3-none-any.whl"
+    },
+    "deploymentScriptsName": {
+      "value": "updateSerialNumber"
+    }
+  }
+}
