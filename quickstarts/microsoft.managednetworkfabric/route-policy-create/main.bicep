@@ -13,12 +13,19 @@ param annotation string = ''
 @description('ARM Resource ID of the Network Fabric')
 param networkFabricId string
 
+@description('AddressFamilyType. This parameter decides whether the given ipv4 or ipv6 route policy')
 @allowed([
   'IPv4'
   'IPv6'
 ])
-@description('AddressFamilyType. This parameter decides whether the given ipv4 or ipv6 route policy')
 param addressFamilyType string = 'IPv4'
+
+@description('Default action that needs to be applied when no condition is matched')
+@allowed([
+  'Deny'
+  'Permit'
+])
+param defaultAction string = 'Permit'
 
 @description('Create Route Policy')
 resource routePolicies 'Microsoft.ManagedNetworkFabric/routePolicies@2023-06-15' = {
@@ -28,6 +35,7 @@ resource routePolicies 'Microsoft.ManagedNetworkFabric/routePolicies@2023-06-15'
     annotation: !empty(annotation) ? annotation : null
     networkFabricId: networkFabricId
     addressFamilyType: addressFamilyType
+    defaultAction: defaultAction
     statements: [for i in range(0, length(statements)): {
       sequenceNumber: statements[i].sequenceNumber
       condition: {

@@ -8,6 +8,9 @@
     "addressFamilyType": {
       "value": "IPv4"
     },
+    "defaultAction": {
+      "value": "Permit"
+    },
     "networkFabricId": {
       "value": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/example-rg/providers/Microsoft.ManagedNetworkFabric/networkFabrics/example-nf"
     },
