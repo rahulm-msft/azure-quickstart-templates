@@ -4,7 +4,7 @@ param internalNetworkName string
 @description('Name of the L3 Isolation Domain')
 param l3IsolationDomainName string
 
-@description('Switch configuration description')
+@description('Description for underlying resource')
 param annotation string = ''
 
 @description('Vlan identifier value')

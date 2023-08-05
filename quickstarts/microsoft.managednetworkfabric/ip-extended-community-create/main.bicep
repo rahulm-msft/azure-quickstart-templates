@@ -4,7 +4,7 @@ param ipExtendedCommunityName string
 @description('Azure Region for deployment of the Ip Prefix and associated resources')
 param location string = resourceGroup().location
 
-@description('Switch configuration description')
+@description('Description for underlying resource')
 param annotation string = ''
 
 @description('List of IP Extended Community Rules')

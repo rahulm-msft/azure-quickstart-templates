@@ -4,7 +4,7 @@ param l2DomainName string
 @description('Azure Region for deployment of the L2 Isolation Domain and associated resources')
 param location string = resourceGroup().location
 
-@description('Switch configuration description')
+@description('Description for underlying resource')
 param annotation string = ''
 
 @description('Resource Id of the Network Fabric, is should be in the format of /subscriptions/<Sub ID>/resourceGroups/<Resource group name>/providers/Microsoft.ManagedNetworkFabric/networkFabrics/<networkFabric name>')

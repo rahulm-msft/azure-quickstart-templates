@@ -7,7 +7,7 @@ param location string = resourceGroup().location
 @description('Route Policy statements')
 param statements array
 
-@description('Switch configuration description')
+@description('Description for underlying resource')
 param annotation string = ''
 
 @description('ARM Resource ID of the Network Fabric')

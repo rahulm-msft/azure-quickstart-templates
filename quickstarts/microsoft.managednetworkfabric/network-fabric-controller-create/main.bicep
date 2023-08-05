@@ -4,7 +4,7 @@ param networkFabricControllerName string
 @description('Azure Region for deployment of the Network Fabric Controller and associated resources')
 param location string = resourceGroup().location
 
-@description('Switch configuration description')
+@description('Description for underlying resource')
 param annotation string = ''
 
 @description('A workload management network is required for all the tenant (workload) traffic. This traffic is only dedicated for Tenant workloads which are required to access internet or any other MSFT/Public endpoints')

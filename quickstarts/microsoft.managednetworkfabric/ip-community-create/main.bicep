@@ -4,7 +4,7 @@ param ipCommunityName string
 @description('Azure Region for deployment of the Ip Community and associated resources')
 param location string = resourceGroup().location
 
-@description('Switch configuration description')
+@description('Description for underlying resource')
 param annotation string = ''
 
 @description('List of IP Community Rules')
